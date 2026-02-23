@@ -11,7 +11,7 @@ st.title(f"what do cows drink? smoooooothie! :cow: :cup_with_straw: ")
 name_on_order = st.text_input('name on order')
 st.write = ('You have choosen this name: ', name_on_order)
 
-##session = get_active_session()
+session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 ##my_dataframe = session.table("smoothies.public.fruit_options")
 ##st.dataframe(data=my_dataframe, use_container_width=True)
@@ -42,3 +42,6 @@ if ingredient_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
     
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
